@@ -33,3 +33,11 @@ currentPlot <-ggplot(df,aes(x=x, y=y, group = 1)) + geom_line(aes(y=untrended))
 currentPlot
 
 # We now want to remove seasonality
+# MA model
+acf(temperature, lag.max=100)
+
+which.max(abs(pacf(temperature,lag.max=100)$acf))
+arima(temperature, order=c(1,0,0))
+
+# AR model
+arima(data,order=c(0,0,1))
