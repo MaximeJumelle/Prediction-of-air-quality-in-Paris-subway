@@ -7,9 +7,9 @@
 library(purrr)
 library(ggplot2)
 
-dataset<-read.csv("/home/maxime/Documents/R/ISUP/TSA/data/dataset.csv", sep=";", header= TRUE)
+dataset<-read.csv("/home/maxime/Documents/R/TSA/data/dataset.csv", sep=";", header= TRUE)
 
-dataset<-dataset[order(as.Date(dataset$DATE, format="%d/%m/%Y")),]
+#dataset<-dataset[order(as.Date(dataset$DATE, format="%d/%m/%Y")),]
 dataset$TEMP<-as.numeric(dataset$TEMP)
 dataset$HUMI<-as.numeric(dataset$HUMI)
 dataset$NO<-as.numeric(dataset$NO)
@@ -31,7 +31,7 @@ while (index < length(dates))
   index<-index + jumpValue
 }
 
-df <- data.frame(x = dates,y=dataset$TEMP)
+df <- data.frame(x = dates[1:40000],y=dataset$TEMP[1:40000])
 #df <- data.frame(x = datesJump,y=tempJump)
 ggplot(df,aes(x=x,y=y)) + geom_line(position = 'jitter')
 
